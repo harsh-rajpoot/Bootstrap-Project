@@ -5,23 +5,64 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-        <!--font-->
+  <!--font-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&display=swap" rel="stylesheet">
         
-        <!--Font Awesome-->
+  <!--Font Awesome-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         
-        <!-- Bootstrap CSS -->
+  <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
         
-        <!--Our CSS-->
+  <!--Our CSS-->
 
     <link rel="stylesheet" href="style.css">
     <title>Tasky</title>
 </head>
-<body>
+<body onload="loadInitialCardData()">
+  
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Task</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="imageurl" class="form-label">Image URL</label>
+            <input type="url" class="form-control" id="imageurl" aria-describedby="Image URL" placeholder="https://example.com/hello.jpg">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="tasktitle" class="form-label">Task Title</label>
+            <input type="text" class="form-control" id="tasktitle" aria-describedby="Task Title" placeholder="eg: API Integration" >
+          </div>
+          <div class="mb-3">
+            <label for="tasktype" class="form-label">Task Type</label>
+            <input type="text" class="form-control" id="tasktype" aria-describedby="Task Type" placeholder="eg: Work" > 
+          </div>
+          <div class="mb-3">
+            <label for="taskdescription" class="form-label">Task Description</label>
+            <textarea 
+            rows="6" class="form-control" id="taskdescription" aria-describedby="Task Type" placeholder="Describe your task in detail" ></textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="saveChanges()" >Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!--Navbar-->
+
     <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand fw-bold text-primary" href="#">Tasky</a>
@@ -33,7 +74,7 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
             </ul>
-            <button type="button" class="btn btn-primary" ><i class="fas fa-plus "></i> Add New</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="fas fa-plus "></i> Add New</button>
           </div>
         </div>
       </nav>
@@ -46,31 +87,17 @@
                   </div>
               </div>
           </div>
-          <!--Cards-->
+  <!--Cards-->
         <section>
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card ">
-                        <div class="card-header d-flex justify-content-end gap-2">
-                            <button type="button" class="btn btn-outline-success"><i class="fas fa-pencil-alt"></i></button>
-                            <button type="button" class="btn btn-outline-danger"><i class="fas fa-dumpster-fire"></i></button>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1610498583782-c4cf4ece0193?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" class="card-img-top" alt="...">
-
-                        <div class="card-body">
-                          <h5 class="card-title">Soothing Moutain Ranges.</h5>
-                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                        <div class="card-footer">
-                            <button type="button" class="btn btn-outline-primary float-end">Open Task</button>
-                        </div>
-                      </div>
-                </div>
+            <div class="row task__container">
+               
             </div>
           </section>
         </div>
-    <!-- JavaScript Bundle with Popper -->
+  <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+  <!--Our JavaScript File-->
+<script src="index.js"></script>
+
 </body>
 </html>
